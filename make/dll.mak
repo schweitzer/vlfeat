@@ -104,6 +104,15 @@ no_dep_targets += dll-info
 dll-all: dll
 dll: $(dll_tgt)
 
+dll-install:
+		install -m 644 $(dll_tgt) $(INSTALL_LIB)
+		test -d $(INSTALL_HEADERS)/vl || mkdir $(INSTALL_HEADERS)/vl
+		for FILE in $(wildcard vl/*.h); do \
+		cp "$$FILE" $(INSTALL_HEADERS)/vl; \
+		done
+
+
+
 # generate the dll-dir target
 $(eval $(call gendir, dll, $(BINDIR) $(BINDIR)/objs))
 

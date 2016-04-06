@@ -54,6 +54,9 @@
 #   MKOCTFILE [not defined] - Path to Octave MKOCTFILE compiler. If undefined,
 #       Octave support is disabled.
 #
+#   PREFIX [/usr] - Path to the install directory. default /usr.
+#
+#
 # If defined to anything other than "no", the following falgs disable
 # specific features in the library. By defaults, all the features are
 # enabled.  If the makefile finds that the environment is unable to
@@ -94,6 +97,15 @@ SHELL = /bin/bash
 
 .PHONY : all
 all:
+
+ifeq ($(INSTALL_PREFIX),)
+PREFIX="/usr"
+else
+PREFIX :=${INSTALL_PREFIX}
+endif
+
+INSTALL_LIB     := $(PREFIX)/lib
+INSTALL_HEADERS := $(PREFIX)/include
 
 # Select which features to disable
 # DISABLE_SSE2=yes
@@ -341,6 +353,8 @@ clean:
 archclean: clean
 
 distclean:
+
+install: dll-install
 
 info:
 	$(call echo-title,General settings)
