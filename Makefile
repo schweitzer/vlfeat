@@ -54,7 +54,7 @@
 #   MKOCTFILE [not defined] - Path to Octave MKOCTFILE compiler. If undefined,
 #       Octave support is disabled.
 #
-#   PREFIX [/usr] - Path to the install directory. default /usr.
+#   INSTALL_PREFIX [/usr] - Path to the install directory. default /usr.
 #
 #
 # If defined to anything other than "no", the following falgs disable
